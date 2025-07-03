@@ -18,7 +18,7 @@ A Python-based web scraper that extracts property listings from Redfin in New Yo
 
 
 ```
-real-estate-scraper-nyc/
+real-estate-scraper/
 ├── main.py                  
 ├── requirements.txt        
 ├── .env.example              
