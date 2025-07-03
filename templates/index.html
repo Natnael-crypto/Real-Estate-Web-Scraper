@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Real Estate Data Scraping Showcase</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-600">Web Site Scraper</h1>
+      <nav class="space-x-4">
+        <a href="#" class="text-gray-600 hover:text-blue-600">Home</a>
+        <a href="#listings" class="text-gray-600 hover:text-blue-600">Listings</a>
+        <a href="#tech" class="text-gray-600 hover:text-blue-600">Technology</a>
+        <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+        <a href="https://github.com/Natnael-crypto/Real-Estate-Web-Scraper/tree/main" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">View Source</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-r from-blue-500 to-indigo-600 py-20 text-white text-center">
+    <h2 class="text-4xl font-bold mb-4">Real Estate Data Scraping Showcase</h2>
+    <p class="text-lg mb-6">Demonstrating effective scraping techniques by extracting real estate data</p>
+    <a href="#listings" class="bg-white text-blue-600 px-6 py-3 rounded font-semibold">Browse Listings</a>
+  </section>
+
+  <!-- Stats -->
+  <section class="bg-gray-100 py-10 text-center">
+    <div class="container mx-auto grid grid-cols-3 gap-6 text-lg font-medium">
+      <div><span class="text-blue-600 font-bold text-3xl">2+</span><br>Scraping Tools Used</div>
+      <div><span class="text-blue-600 font-bold text-3xl">1000+</span><br>Properties Scraped</div>
+      <div><span class="text-blue-600 font-bold text-3xl">10+</span><br>Custom Extraction Rules</div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="py-16 bg-white text-center">
+    <h3 class="text-3xl font-bold mb-6">About This Project</h3>
+    <p class="max-w-2xl mx-auto text-gray-600 mb-12">This project demonstrates scraping real estate data from Redfin using Playwright and Python. The scraped data includes detailed property information such as price, address, beds, baths, square footage, and agent details.</p>
+    <div class="grid md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+      <div class="p-4 border rounded-lg bg-gray-50">🧠<br><strong>Automated Site Parsing</strong><br>Dynamic scrolling, pagination, and data fetching.</div>
+      <div class="p-4 border rounded-lg bg-gray-50">🧹<br><strong>Data Cleaning</strong><br>Sanitized CSV output ready for use.</div>
+      <div class="p-4 border rounded-lg bg-gray-50">📁<br><strong>Structured Storage</strong><br>Organized output with export and search in mind.</div>
+      <div class="p-4 border rounded-lg bg-gray-50">📊<br><strong>EDA Ready</strong><br>Data suitable for Jupyter, Pandas, Tableau, etc.</div>
+    </div>
+  </section>
+
+  <!-- Listings -->
+  <section class="py-10 text-center bg-white">
+    <h2 class="text-3xl font-bold">Scraped Listings</h2>
+    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Below are real estate listings scraped from multiple sources. Each card contains detailed information extracted and processed by my scraping system.</p>
+  </section>
+
+  <section class="bg-gray-50 py-8">
+    <div class="container mx-auto px-4">
+      <div id="listing-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% include "partials/listing_cards.html" %}
+      </div>
+      {% if has_more %}
+      <div class="text-center mt-8">
+        <button onclick="loadMore()" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 text-sm">+ Load More Listings</button>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Technology -->
+  <section id="tech" class="bg-white py-16 text-center">
+    <h3 class="text-3xl font-bold mb-8">Technology Stack</h3>
+    <div class="grid grid-cols-3 gap-4 max-w-4xl mx-auto text-sm text-left">
+      <div>
+        <h4 class="font-semibold text-blue-600 mb-2">Scraping Tools</h4>
+        <ul class="list-disc pl-5">
+          <li>Playwright</li>
+          <li>Python 3.10+</li>
+          <li>Async/Await</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-blue-600 mb-2">Data Processing</h4>
+        <ul class="list-disc pl-5">
+          <li>Pandas</li>
+          <li>CSV Export</li>
+          <li>Jupyter Notebooks</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-blue-600 mb-2">Frontend/Display</h4>
+        <ul class="list-disc pl-5">
+          <li>Flask + Jinja2</li>
+          <li>Tailwind CSS</li>
+          <li>Responsive Design</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-12 text-center">
+    <h3 class="text-2xl font-bold mb-4">Interested in Data Scraping Solutions?</h3>
+    <p class="mb-6">I can build custom scrapers, bots, and pipelines to extract and analyze structured data from almost any website.</p>
+    <a href="mailto:your@email.com" class="bg-white text-blue-600 px-6 py-3 rounded font-semibold">Contact Me</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-8 text-sm">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 ProjectScraper. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  let currentPage = 1;
+  async function loadMore() {
+    const res = await fetch(`/listings?page=${currentPage + 1}`);
+    const html = await res.text();
+    document.getElementById("listing-container").insertAdjacentHTML("beforeend", html);
+    currentPage++;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% for listing in listings %}
+<div class="bg-white shadow-md rounded-xl overflow-hidden border">
+  <div class="relative">
+    <img src="{{ listing.image }}" alt="Property Image" class="w-full h-56 object-cover">
+    <div class="absolute top-2 left-2 bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+      {{ listing.type or "Listing" }}
+    </div>
+    <div class="absolute top-2 right-2 bg-white text-blue-700 text-sm font-bold px-2 py-1 rounded">
+      {{ listing.price }}
+    </div>
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-lg text-gray-800">{{ listing.address }}</h3>
+    <p class="text-sm text-gray-500 mb-2">{{ listing.city or "New York City" }}</p>
+    <div class="text-sm text-gray-600 flex flex-wrap gap-4 mb-3">
+      <span>🛏 {{ listing.beds }}</span>
+      <span>🛁 {{ listing.baths }}</span>
+      <span>📐 {{ listing.sqft }}</span>
+    </div>
+    <p class="text-xs text-gray-500 mb-2">{{ listing.lot_hoa_walk }}</p>
+    <p class="text-xs text-gray-500 mb-3">{{ listing.agent }}</p>
+    <div class="flex justify-between items-center">
+      <span class="text-xs text-blue-500">🔎 Scraped from Redfin</span>
+      <a href="{{ listing.url }}" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-2 rounded" target="_blank">View Original</a>
+    </div>
+  </div>
+</div>
+{% endfor %}

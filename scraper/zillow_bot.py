@@ -9,7 +9,7 @@ CUSTOM_USER_AGENT = (
     "(KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
 )
 
-async def auto_scroll_page(page, scroll_delay=2000, scroll_times=22):
+async def auto_scroll_page(page, scroll_delay=2000, scroll_times=5):
     for i in range(scroll_times):
         await page.evaluate("window.scrollBy(0, window.innerHeight);")
         await asyncio.sleep(scroll_delay / 1000)
@@ -74,6 +74,9 @@ async def scrape_zillow(link, max_pages=1):
                     agent_el = await home.query_selector(".bp-Homecard__Attribution")
                     agent = await agent_el.inner_text() if agent_el else "N/A"
 
+                    img_el = await home.query_selector("img.bp-Homecard__Photo--image")
+                    image = await img_el.get_attribute("src") if img_el else "N/A"
+
                     listings.append({
                         "address": address_text,
                         "price": price,
@@ -83,9 +86,10 @@ async def scrape_zillow(link, max_pages=1):
                         "lot_hoa_walk": facts,
                         "agent": agent,
                         "url": full_url,
+                        "image": image
                     })
 
-                    print(f"🏠 {address_text} | 💰 {price} | 🛏 {beds} | 🛁 {baths} | 📐 {sqft}")
+                    print(f"🏠 {address_text} | 💰 {price} | 🛏 {beds} | 🛁 {baths} | 📐 {sqft} | 🖼 {image}")
 
                 except Exception as e:
                     print(f"[ERROR] Parsing failed: {repr(e)}")
@@ -96,22 +100,23 @@ async def scrape_zillow(link, max_pages=1):
 
     return listings
 
+
 if __name__ == "__main__":
     try:
 
-        page=10
+        page=9
         all_listing=[]
         for i in range(page):
-            target_url = f"https://www.redfin.com/city/30749/NY/New-York/page-{i+1}"
+            target_url = f"https://www.redfin.com/city/12839/DC/Washington-DC/page-{i+1}"
             results = asyncio.run(scrape_zillow(target_url, max_pages=1))
             
             for item in results:
                 all_listing.append(item)
 
         # Write to CSV file
-        with open("listing.csv", mode="w", newline="", encoding="utf-8") as file:
+        with open("data/listing.csv", mode="w", newline="", encoding="utf-8") as file:
             writer = csv.DictWriter(file, fieldnames=[
-                "address", "price", "beds", "baths", "sqft", "lot_hoa_walk", "agent", "url"
+                "address", "price", "beds", "baths", "sqft", "lot_hoa_walk", "agent", "url","image"
             ])
             writer.writeheader()
             for row in all_listing:
