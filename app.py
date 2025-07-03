@@ -29,4 +29,4 @@ def listings_ajax():
     return render_template("partials/listing_cards.html", listings=visible)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0",debug=True)
